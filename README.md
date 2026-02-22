@@ -105,8 +105,8 @@ rm -rf data/aggregates checkpoints
 ```
 Bash
 source .venv/bin/python
-```
 python scripts/api_producer.py
+```
 (Note: If API limits are reached, run python scripts/mock_producer.py to generate synthetic data).
 
 **d. Start the Spark Processing Job:**
