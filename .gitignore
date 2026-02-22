@@ -2,19 +2,13 @@
 .env
 
 # Virtual Environments
-.venv/
-venv/
-env/
+.venv
 
 # Spark Checkpoints & State
-checkpoints/
-_spark_metadata/
+checkpoints
 
 # Output Data
-data/
-*.csv
-*.parquet
-*.json
+data
 
 # Python Cache
 __pycache__/
