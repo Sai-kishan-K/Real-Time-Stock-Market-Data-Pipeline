@@ -1,0 +1,21 @@
+# Security
+.env
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Spark Checkpoints & State
+checkpoints/
+_spark_metadata/
+
+# Output Data
+data/
+*.csv
+*.parquet
+*.json
+
+# Python Cache
+__pycache__/
+*.pyc
