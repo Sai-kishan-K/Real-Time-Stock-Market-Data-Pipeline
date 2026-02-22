@@ -1,5 +1,7 @@
 # 📈 Real-Time Stock Market Data Pipeline
 
+
+
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![Apache Kafka](https://img.shields.io/badge/Apache_Kafka-Broker-black.svg?logo=apachekafka)
 ![Apache Spark](https://img.shields.io/badge/Apache_Spark-Structured_Streaming-E25A1C.svg?logo=apachespark)
@@ -138,3 +140,6 @@ streamlit run scripts/dashboard.py
 
 ***
 
+Author -  Sai Kishan Kumar & Aarya Patil
+
+***
