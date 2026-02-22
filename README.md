@@ -78,7 +78,7 @@ A Streamlit web application that acts as the final consumer. It uses pyarrow to 
 
 ![Dashboard Output](screenshots/Dashboard_main.png)
 
-![Dashboard Output2](screenshots/Dashboard_main.png)
+![Dashboard Output2](screenshots/Dashboard.png)
 
 ### 5. Step-by-Step Execution Guide
 **Prerequisites**
