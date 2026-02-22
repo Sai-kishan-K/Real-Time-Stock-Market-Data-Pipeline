@@ -30,15 +30,6 @@ parsed_df = df.selectExpr("CAST(value AS STRING)") \
     .select("data.*")
 
 # 3. Windowed Aggregation with Watermark 
-# aggregated_df = parsed_df \
-#     .withWatermark("event_time", "2 minutes") \
-#     .groupBy(
-#         window(col("event_time"), "5 minutes", "1 minute"),
-#         col("symbol")
-#     ).agg(
-#         avg("price").alias("avg_price"),
-#         max("price").alias("max_price")
-#     )
 aggregated_df = parsed_df \
     .withWatermark("event_time", "0 seconds") \
     .groupBy(
@@ -49,20 +40,7 @@ aggregated_df = parsed_df \
         max("price").alias("max_price")
     )
 
-# 4. Write to Console (or another Kafka topic)
-# query = aggregated_df.writeStream \
-#     .outputMode("complete") \
-#     .format("console") \
-#     .option("checkpointLocation", "./checkpoints") \
-#     .start()
-# 5. Write data into a file for Streamlit to read
-# query = aggregated_df.writeStream \
-#     .outputMode("complete") \
-#     .format("csv") \
-#     .option("header", "true") \
-#     .option("path", "data/aggregates") \
-#     .option("checkpointLocation", "checkpoints/dashboard") \
-#     .start()
+# 4. Write to Parquet file for Dashboard to read
 query = aggregated_df.writeStream \
     .outputMode("append") \
     .format("parquet") \

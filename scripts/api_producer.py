@@ -12,33 +12,7 @@ producer = KafkaProducer(
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
-# def fetch_stock_data():
-#     url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={SYMBOL}&apikey={API_KEY}'
-#     res = requests.get(url)
-#     data = res.json()
-    
-#     if "Global Quote" in data:
-#         quote = data["Global Quote"]
-#         # Normalize schema: Add event_time for Spark watermarking
-#         payload = {
-#             "symbol": quote["01. symbol"],
-#             "price": float(quote["05. price"]),
-#             "volume": int(quote["06. volume"]),
-#             "event_time": time.strftime('%Y-%m-%d %H:%M:%S') # Critical for Spark
-#         }
-#         return payload
-#     return None
-
-# while True:
-#     data = fetch_stock_data()
-#     if data:
-#         producer.send(TOPIC, data)
-#         print(f"Sent to Kafka: {data}")
-#     # Alpha Vantage Free Tier is 25 calls/day. 
-#     # For testing, you might use a loop with a long sleep or mock data.
-#     time.sleep(60)
-
-# 2. Pass the symbol as an argument
+# 1. Pass the symbol as an argument
 def fetch_stock_data(symbol):
     url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={API_KEY}'
     
@@ -46,7 +20,7 @@ def fetch_stock_data(symbol):
         res = requests.get(url)
         data = res.json()
         
-        # 3. Handle Alpha Vantage API Limits gracefully
+        # 2. Handle Alpha Vantage API Limits gracefully
         if "Information" in data or "Note" in data:
             print(f"⚠️ API Limit Reached or Warning for {symbol}: {data.get('Information', data.get('Note'))}")
             return None
@@ -75,7 +49,7 @@ def fetch_stock_data(symbol):
 print(f"🚀 Starting Multi-Stock API Producer for: {SYMBOLS}")
 
 while True:
-    # 4. Loop through each symbol
+    # 3. Loop through each symbol
     for symbol in SYMBOLS:
         data = fetch_stock_data(symbol)
         

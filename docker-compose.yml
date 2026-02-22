@@ -3,34 +3,10 @@ services:
     image: zookeeper:latest
     ports:
       - "2181:2181"
-
-  # kafka:
-  #   image: apache/kafka:latest
-  #   ports:
-  #     - "9092:9092"
-  #   environment:
-  #     # Kafka 3.x+ can run without Zookeeper (KRaft mode), 
-  #     # but here we keep it simple to match your original flow.
-  #     - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-  #     - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9093,EXTERNAL://localhost:9092
-  #     - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
-  #     - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
-  #   depends_on:
-  #     - zookeeper
   kafka:
     image: apache/kafka:latest
     ports:
       - "9092:9092"
-    # environment:
-    #   # Use these specific variables for the Apache image
-    #   - KAFKA_NODE_ID=1
-    #   - KAFKA_PROCESS_ROLES=broker,controller
-    #   - KAFKA_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
-    #   - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
-    #   - KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER
-    #   - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
-    #   - KAFKA_CONTROLLER_QUORUM_VOTERS=1@localhost:9093
-    #   - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
     environment:
       - KAFKA_NODE_ID=1
       - KAFKA_PROCESS_ROLES=broker,controller
@@ -43,20 +19,3 @@ services:
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
     depends_on:
       - zookeeper
-  # spark:
-  #   image: apache/spark:latest
-  #   environment:
-  #     - SPARK_MODE=master
-  #     - SPARK_NO_DAEMONIZE=true
-  #   volumes:
-  #     - ./scripts:/opt/spark/work-dir/scripts
-  #     - ./checkpoints:/opt/spark/work-dir/checkpoints
-  #   ports:
-  #     - "8080:8080" # Spark Master Web UI
-  #     - "7077:7077" # Spark Master Port
-  #   command: >
-  #     /bin/bash -c "/opt/spark/bin/spark-class org.apache.spark.deploy.master.Master & 
-  #     tail -f /dev/null"
-  #   # bin/spark-class org.apache.spark.deploy.master.Master
-  #   depends_on:
-  #     - kafka
