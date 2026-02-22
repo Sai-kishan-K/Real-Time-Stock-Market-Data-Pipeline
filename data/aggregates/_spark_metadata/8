@@ -1,0 +1,3 @@
+v1
+{"path":"file:///Users/saikishan/Documents/spark_kafka_project/data/aggregates/part-00000-da7c5f71-4cf8-4bc7-a196-4065e71f6c3b-c000.snappy.parquet","size":791,"isDir":false,"modificationTime":1771515295168,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///Users/saikishan/Documents/spark_kafka_project/data/aggregates/part-00165-b6f2e007-2dfd-4558-b233-305c318b41cb-c000.snappy.parquet","size":1715,"isDir":false,"modificationTime":1771515296221,"blockReplication":1,"blockSize":33554432,"action":"add"}
